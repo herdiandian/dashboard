@@ -15,7 +15,7 @@
   <!-- Stats Cards -->
   <div class="row g-3 mb-4">
     <div class="col-6 col-md-6">
-      <div class="card text-center text-white bg-success shadow-sm">
+      <div class="card text-center text-white bg-info shadow-sm">
         <div class="card-body">
           <h5>Checked In</h5>
           <h2 id="checkedIn">0</h2>
@@ -23,9 +23,9 @@
       </div>
     </div>
     <div class="col-6 col-md-6">
-      <div class="card text-center text-white bg-info shadow-sm">
+      <div class="card text-center text-white bg-warning shadow-sm">
         <div class="card-body">
-          <h5>Manual</h5>
+          <h5>Non QRCode</h5>
           <h2 id="checkedManual">0</h2>
         </div>
       </div>
@@ -35,16 +35,19 @@
 
 <script>
 // TODO: Replace with your own Google Sheet JSON URL
-const sheetUrl = "https://opensheet.elk.sh/1x8T1tO440ulOLdWaD4rc_0MnJcKr4BDSM2d96FsRKpA/Buku+Tamu";
+const sheetUrl = "https://opensheet.elk.sh/1x8T1tO440ulOLdWaD4rc_0MnJcKr4BDSM2d96FsRKpA/";
 
 async function loadData() {
-  const res = await fetch(sheetUrl);
+  const res = await fetch(sheetUrl + "Buku+Tamu");
+  const resMasterData = await fetch(sheetUrl + "Master+Data");
   const data = await res.json();
+  const masterData = await res.json();
 
   const checkedIn = data.length;
+  const masterDataTotal = masterData.length;
   const checkedInManual = data.filter(r => r.id.toLowerCase() === "manual").length;
 
-  document.getElementById("checkedIn").innerText = checkedIn;
+  document.getElementById("checkedIn").innerText = checkedIn + ' / ' + masterDataTotal;
   document.getElementById("checkedManual").innerText = checkedInManual;
 }
 
