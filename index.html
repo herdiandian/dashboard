@@ -129,7 +129,7 @@
     if (dataTable) {
       dataTable.clear();
       dataTable.rows.add(rows);
-      // dataTable.draw(false); // false biar gak reset paging
+      dataTable.draw(); // false biar gak reset paging
     } else {
       dataTable = $('#bukuTamuTable').DataTable({
         data: rows,
@@ -160,5 +160,6 @@
 
 </body>
 </html>
+
 
 
