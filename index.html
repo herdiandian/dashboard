@@ -129,12 +129,17 @@
     if (dataTable) {
       dataTable.clear();
       dataTable.rows.add(rows);
-      dataTable.draw(false); // false biar gak reset paging
+      // dataTable.draw(false); // false biar gak reset paging
     } else {
       dataTable = $('#bukuTamuTable').DataTable({
         data: rows,
         // paging: false,
         // searching: false,
+        lengthChange: false,
+        language: {
+            search: "", // Remove the "Search" label
+            searchPlaceholder: "cari.. ." // Change the placeholder text
+        }
         info: false,
         ordering: false   // 🚀 Disable all column sorting
       });
@@ -155,3 +160,4 @@
 
 </body>
 </html>
+
